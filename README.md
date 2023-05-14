@@ -40,10 +40,10 @@ The Timers class is a utility class for managing timed events and callbacks in U
     ```csharp
     // Set multiple timers with different durations and callbacks
     Timers.Instance.SetTimer(2f, () =>
-                             {
-                                Debug.Log("Timer 1 expired!");
-                             });
-Timers.Instance.SetTimer(3f, () =>
-                         {
-                            Debug.Log("Timer 2 expired!");
-                         });
+     {
+        Debug.Log("Timer 1 expired!");
+     });
+   Timers.Instance.SetTimer(3f, () =>
+          {
+             Debug.Log("Timer 2 expired!");
+       });
