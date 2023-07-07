@@ -1,19 +1,26 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
+/// <summary>
+/// The Timers class manages timers for executing callback functions after a specified duration.
+/// </summary>
 public class Timers : MonoBehaviour
 {
-    // Singleton instance
+    /// <summary>
+    /// Gets the singleton instance of the Timers class.
+    /// </summary>
     public static Timers Instance;
 
-    // Dictionary to store timers sorted by expiration time
+    /// <summary>
+    /// Dictionary to store timers sorted by expiration time.
+    /// </summary>
     SortedDictionary<float, Timer> _timers = new SortedDictionary<float, Timer>();
 
-    // Current time
+    /// <summary>
+    /// Current time.
+    /// </summary>
     float time = 0;
 
-    // Awake is called before the first frame update
+    /// <summary>
+    /// Awake is called before the first frame update.
+    /// </summary>
     void Awake()
     {
         if (Instance == null)
@@ -26,7 +33,9 @@ public class Timers : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame.
+    /// </summary>
     void Update()
     {
         time += Time.deltaTime;
@@ -59,20 +68,43 @@ public class Timers : MonoBehaviour
         }
     }
 
-    // Set a timer with a given duration and callback function
+    /// <summary>
+    /// Set a timer with a given duration and callback function.
+    /// </summary>
+    /// <param name="duration">The duration of the timer.</param>
+    /// <param name="callback">The callback function to execute when the timer expires.</param>
     public void SetTimer(float duration, Action callback)
     {
         _timers.Add(time + duration, new Timer(time, duration, callback));
     }
 }
 
-// Struct to represent a timer
+/// <summary>
+/// Struct to represent a timer.
+/// </summary>
 public struct Timer
 {
+    /// <summary>
+    /// The start time of the timer.
+    /// </summary>
     public float StartTime;
+
+    /// <summary>
+    /// The duration of the timer.
+    /// </summary>
     public float Duration;
+
+    /// <summary>
+    /// The callback function to execute when the timer expires.
+    /// </summary>
     public Action Callback;
 
+    /// <summary>
+    /// Initializes a new instance of the Timer struct with the specified start time, duration, and callback function.
+    /// </summary>
+    /// <param name="startTime">The start time of the timer.</param>
+    /// <param name="duration">The duration of the timer.</param>
+    /// <param name="callback">The callback function to execute when the timer expires.</param>
     public Timer(float startTime, float duration, Action callback)
     {
         StartTime = startTime;
